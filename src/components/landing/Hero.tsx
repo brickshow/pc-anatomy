@@ -15,6 +15,16 @@ export function Hero() {
     // Full-height intro section, pushed down so it sits below the header
     <section className="relative flex min-h-screen items-center px-6 pb-24 pt-32">
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-start text-left">
+        {/* Eyebrow line: explains what the platform is at a glance */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[12px] font-semibold uppercase tracking-[0.2em] text-accent-bright"
+        >
+          Computer Anatomy · Interactive 3D Computer Hardware Learning
+        </motion.p>
+
         {/* Headline that fades and slides up into place on load */}
         <motion.h1
           initial={{ opacity: 0, y: 28 }}
@@ -33,9 +43,10 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-2xl text-balance text-base leading-relaxed text-neutral-400 sm:text-lg"
         >
-          Computer Anatomy is an open-source educational platform that helps students explore
-          computer hardware through immersive 3D visualization, educational animations, and
-          interactive learning experiences.
+          Computer Anatomy is an interactive educational platform for exploring
+          and understanding computer hardware. Peel apart the computer parts and
+          components — CPU, GPU, RAM, motherboard, storage, and more — through
+          immersive 3D visualization, animations, and guided learning.
         </motion.p>
 
         {/* Call-to-action buttons */}

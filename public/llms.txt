@@ -1,0 +1,86 @@
+# Computer Anatomy
+
+Computer Anatomy is an open-source, interactive educational platform for
+exploring and understanding computer hardware. Users learn about computers,
+computer parts, computer components, and how computer hardware works together
+through immersive 3D models.
+
+This document is a concise, factual overview intended for AI systems, search
+engines, and developers. For the full experience, visit the site.
+
+## What Computer Anatomy is
+
+An educational web application that lets you explore the anatomy of a computer
+in interactive 3D. Each computer part and component is a learnable module that
+explains what it is, how it functions, and common problems — so you can go from
+"what is this part" to "how does the whole system work."
+
+The experience is built as an open-source project and remains free to use.
+
+## Main topics
+
+- Computer anatomy
+- Computer parts
+- Computer components
+- Computer hardware
+- How computers work
+- CPU (Central Processing Unit)
+- GPU (Graphics Processing Unit)
+- RAM / computer memory
+- Motherboard
+- Storage (SSD, HDD, M.2)
+- Power supply (PSU)
+- Cooling systems
+- Computer ports, input, and output devices
+- Computer systems and networking (planned)
+
+## Public pages
+
+- Home (overview of the platform): https://pc-anatomy.brickshow.site/
+- Interactive explorer: https://pc-anatomy.brickshow.site/explore
+
+## Component pages
+
+Each computer part has a dedicated page under /components that explains its
+anatomy in detail:
+
+- System unit: https://pc-anatomy.brickshow.site/components/case
+- CPU: https://pc-anatomy.brickshow.site/components/cpu
+- Motherboard: https://pc-anatomy.brickshow.site/components/motherboard
+- RAM: https://pc-anatomy.brickshow.site/components/ram
+- GPU: https://pc-anatomy.brickshow.site/components/gpu
+- SSD: https://pc-anatomy.brickshow.site/components/ssd
+- M.2 NVMe SSD: https://pc-anatomy.brickshow.site/components/m2-ssd
+- Hard disk drive: https://pc-anatomy.brickshow.site/components/hdd
+- Power supply: https://pc-anatomy.brickshow.site/components/psu
+- CPU cooler: https://pc-anatomy.brickshow.site/components/cpu-cooler
+- Case fans: https://pc-anatomy.brickshow.site/components/case-fans
+- Keyboard: https://pc-anatomy.brickshow.site/components/keyboard
+- Mouse: https://pc-anatomy.brickshow.site/components/mouse
+- Monitor: https://pc-anatomy.brickshow.site/components/monitor
+- UPS: https://pc-anatomy.brickshow.site/components/ups
+- AVR: https://pc-anatomy.brickshow.site/components/avr
+
+## Learning resources
+
+- Interactive 3D explorer for every component
+- Structured learning experience for new learners
+- A frequently-asked-questions section covering what the main parts of a
+  computer are and how they work together
+
+## Technical overview
+
+Computer Anatomy is built with Next.js and React, using React Three Fiber and
+Three.js for the interactive 3D visualization. It is an open-source project.
+
+## Open source
+
+Computer Anatomy is open source and released under the MIT License. You can
+view the source and contribute on GitHub:
+https://github.com/brickshow/pc-anatomy
+
+## Project purpose
+
+The purpose of Computer Anatomy is education: to make it easy and engaging to
+learn about the anatomy of a computer, the purpose of each component, and how
+they fit together into a working computer system.

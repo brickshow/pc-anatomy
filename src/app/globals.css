@@ -72,6 +72,25 @@ body {
   background: rgba(140, 172, 215, 0.28);
 }
 
+/* Always show a clear visible focus indicator for keyboard navigation. */
+:focus-visible {
+  outline: 2px solid var(--color-accent-bright);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Respect users who prefer reduced motion: minimal CSS transitions/animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* A reusable backdrop (background) effect used behind the 3D viewer: a soft glow + dark gradient. */
 @utility viewer-backdrop {
   background:

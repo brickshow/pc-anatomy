@@ -4,6 +4,16 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ChatWidget } from "@/components/chat/ChatWidget";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  SITE_KEYWORDS,
+  GITHUB_URL,
+  WEBSITE_JSONLD,
+  ORGANIZATION_JSONLD,
+} from "@/lib/site";
 
 // Load the Geist font (the default design font) and expose it as CSS variables.
 const geistSans = Geist({
@@ -17,36 +27,64 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Site-wide metadata: default tab title, template for page titles, description, sharing cards, and icons.
+// Site-wide metadata: default tab title, template for page titles, description,
+// sharing cards, canonical base URL, and robots directives. Individual pages
+// override the fields that are unique to them.
 export const metadata: Metadata = {
-  metadataBase: new URL("https://computer-anatomy.example.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Computer Anatomy — Learn Computer Hardware Like Never Before",
-    template: "%s — Computer Anatomy",
+    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    template: `%s — ${SITE_NAME}`,
   },
-  description:
-    "An open-source, interactive 3D platform that teaches computer hardware. Peel apart the CPU, GPU, RAM, motherboard and more with cinematic WebGL visualizations.",
-  manifest: "/site.webmanifest",
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  applicationName: SITE_NAME,
+  category: "technology",
+  authors: [{ name: "Computer Anatomy" }],
+  creator: "Computer Anatomy",
+  publisher: "Computer Anatomy",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Computer Anatomy — Learn Computer Hardware Like Never Before",
-    description:
-      "Explore the inside of a computer in 3D. An interactive educational platform for learning computer hardware.",
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: `${SITE_URL}/`,
+    siteName: SITE_NAME,
     type: "website",
-    images: [{ url: "/logo.png" }],
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Computer Anatomy — Learn Computer Hardware",
-    description: "An interactive 3D atlas for learning computer hardware.",
-    images: ["/logo.png"],
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  manifest: "/site.webmanifest",
   icons: {
-    icon: [
-      { url: "/logo.png", sizes: "any", type: "image/png" },
+    icon: [{ url: "/logo.png", sizes: "any", type: "image/png" }],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     shortcut: [{ url: "/logo.png", type: "image/png" }],
   },
+};
+
+// Structured data describing the site as an educational website and the
+// open-source organization behind it. Kept factual — no ratings or reviews.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [WEBSITE_JSONLD, ORGANIZATION_JSONLD],
 };
 
 // The layout component. It receives the page's children and puts them inside a full <html> + <body>.
@@ -57,6 +95,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background text-foreground">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <ChatWidget />
       </body>

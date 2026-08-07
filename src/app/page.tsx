@@ -2,15 +2,77 @@
 
 import type { Metadata } from "next";
 import { LandingPage } from "@/components/landing/LandingPage";
+import { FAQ_ITEMS } from "@/data/faq";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  WEBSITE_JSONLD,
+  ORGANIZATION_JSONLD,
+} from "@/lib/site";
 
-// Metadata is special Next.js information (title, description) used by the browser tab and search engines.
 export const metadata: Metadata = {
-  title: "Computer Anatomy — Learn Computer Hardware Like Never Before",
-  description:
-    "An open-source, interactive educational platform that teaches computer hardware in 3D. Explore the CPU, GPU, RAM, motherboard and more with cinematic WebGL visualizations built on Next.js, React Three Fiber and TypeScript.",
+  title: { absolute: `${SITE_NAME} — ${SITE_TAGLINE}` },
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: `${SITE_URL}/`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+  },
+};
+
+// Structured data for the landing page: it describes the page itself plus the
+// genuine, useful FAQ. The answers are exact matches for the visible FAQ section.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    WEBSITE_JSONLD,
+    ORGANIZATION_JSONLD,
+    {
+      "@type": "WebPage",
+      name: `${SITE_NAME} — ${SITE_TAGLINE}`,
+      url: `${SITE_URL}/`,
+      description: SITE_DESCRIPTION,
+      inLanguage: "en",
+      isPartOf: WEBSITE_JSONLD,
+      about: [
+        "computer hardware",
+        "computer parts",
+        "computer components",
+        "computer anatomy",
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: FAQ_ITEMS.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+  ],
 };
 
 // This is the main component Next.js renders for the "/" URL. It just displays the LandingPage.
 export default function Home() {
-  return <LandingPage />;
+  return (
+    <>
+      <LandingPage />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+    </>
+  );
 }

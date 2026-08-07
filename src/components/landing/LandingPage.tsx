@@ -10,8 +10,10 @@ import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
 import { HardwarePreview } from "@/components/landing/HardwarePreview";
 import { LearningExperience } from "@/components/landing/LearningExperience";
+import { HardwareLibrary } from "@/components/landing/HardwareLibrary";
 import { Roadmap } from "@/components/landing/Roadmap";
 import { Community } from "@/components/landing/Community";
+import { Faq } from "@/components/landing/Faq";
 import { Footer } from "@/components/landing/Footer";
 import { HeroCanvas } from "@/components/landing/hero/HeroCanvas";
 
@@ -233,8 +235,10 @@ export function LandingPage() {
         <main>
           <Hero />
           <Features />
+          <HardwareLibrary />
           <Roadmap />
           <Community />
+          <Faq />
         </main>
         <Footer />
       </div>
