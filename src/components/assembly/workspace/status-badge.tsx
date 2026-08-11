@@ -1,36 +1,66 @@
-// status-badge.tsx: A small chip that communicates the current install status
-// of the active step (waiting / installing / installed / error).
+// status-badge.tsx: A small chip that communicates the current interaction
+// phase of the active step (ready / selecting / dragging / securing / …).
 import { Check, Loader2, TriangleAlert, MousePointerClick } from "lucide-react";
-import type { InstallStatus } from "@/lib/assembly";
+import type { InteractionPhase } from "@/lib/assembly";
 import { cn } from "@/lib/utils";
 
 const CONFIG: Record<
-  InstallStatus,
-  { label: string; className: string; iconClassName: string }
+  InteractionPhase,
+  { label: string; className: string; icon: "hand" | "spinner" | "check" | "alert" | "none" }
 > = {
   idle: {
-    label: "Waiting",
+    label: "Ready",
     className: "border-line-strong bg-surface-2 text-muted",
-    iconClassName: "text-muted-2",
+    icon: "hand",
   },
-  installing: {
-    label: "Installing",
+  selecting: {
+    label: "Selected",
     className: "border-accent/40 bg-accent-soft text-accent-bright",
-    iconClassName: "text-accent-bright",
+    icon: "hand",
   },
-  installed: {
-    label: "Installed",
+  dragging: {
+    label: "Dragging",
+    className: "border-accent/40 bg-accent-soft text-accent-bright",
+    icon: "hand",
+  },
+  "valid-target": {
+    label: "Drop here",
+    className: "border-emerald-400/40 bg-emerald-400/10 text-emerald-300",
+    icon: "check",
+  },
+  "invalid-target": {
+    label: "Not here",
+    className: "border-red-400/40 bg-red-400/10 text-red-300",
+    icon: "alert",
+  },
+  placing: {
+    label: "Snapping",
+    className: "border-accent/40 bg-accent-soft text-accent-bright",
+    icon: "spinner",
+  },
+  placed: {
+    label: "Placed",
+    className: "border-accent/40 bg-accent-soft text-accent-bright",
+    icon: "check",
+  },
+  securing: {
+    label: "Securing",
+    className: "border-accent/40 bg-accent-soft text-accent-bright",
+    icon: "spinner",
+  },
+  secured: {
+    label: "Secured",
     className: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
-    iconClassName: "text-emerald-400",
+    icon: "check",
   },
-  error: {
-    label: "Check",
-    className: "border-red-400/30 bg-red-400/10 text-red-300",
-    iconClassName: "text-red-400",
+  completed: {
+    label: "Complete",
+    className: "border-emerald-400/30 bg-emerald-400/10 text-emerald-300",
+    icon: "check",
   },
 };
 
-export function StatusBadge({ status }: { status: InstallStatus }) {
+export function StatusBadge({ status }: { status: InteractionPhase }) {
   const config = CONFIG[status];
   return (
     <span
@@ -39,20 +69,10 @@ export function StatusBadge({ status }: { status: InstallStatus }) {
         config.className,
       )}
     >
-      {status === "idle" && (
-        <MousePointerClick className={cn("h-3 w-3", config.iconClassName)} />
-      )}
-      {status === "installing" && (
-        <Loader2
-          className={cn("h-3 w-3 animate-spin", config.iconClassName)}
-        />
-      )}
-      {status === "installed" && (
-        <Check className={cn("h-3 w-3", config.iconClassName)} />
-      )}
-      {status === "error" && (
-        <TriangleAlert className={cn("h-3 w-3", config.iconClassName)} />
-      )}
+      {config.icon === "hand" && <MousePointerClick className="h-3 w-3" />}
+      {config.icon === "spinner" && <Loader2 className="h-3 w-3 animate-spin" />}
+      {config.icon === "check" && <Check className="h-3 w-3" />}
+      {config.icon === "alert" && <TriangleAlert className="h-3 w-3" />}
       {config.label}
     </span>
   );

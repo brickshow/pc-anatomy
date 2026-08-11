@@ -13,6 +13,7 @@ const eslintConfig = defineConfig([
       "src/components/viewer/**/*.{ts,tsx}",
       "src/components/landing/hero/KeyboardModel.tsx",
       "src/components/landing/hero/HeroCanvas.tsx",
+      "src/components/assembly/workspace/scene/**/*.{ts,tsx}",
     ],
     rules: {
       "react-hooks/immutability": "off",

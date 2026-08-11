@@ -1,6 +1,7 @@
-// step-icon.tsx: Maps the icon name stored on each assembly step to a Lucide
-// icon component, so the data layer can reference icons as plain strings.
+// step-icon.tsx: Maps the icon name stored on assembly steps and tray items to
+// a Lucide icon component, so the data layer can reference icons as strings.
 import {
+  Box,
   Cable,
   CircuitBoard,
   Cpu,
@@ -8,10 +9,12 @@ import {
   HardDrive,
   Layers,
   MemoryStick,
+  Wrench,
   Zap,
 } from "lucide-react";
 
 const ICONS = {
+  Box,
   Cable,
   CircuitBoard,
   Cpu,
@@ -19,6 +22,7 @@ const ICONS = {
   HardDrive,
   Layers,
   MemoryStick,
+  Wrench,
   Zap,
 } as const;
 
