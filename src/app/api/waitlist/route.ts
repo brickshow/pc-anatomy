@@ -14,6 +14,7 @@
 
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { rateLimit, readJsonLimited } from "@/lib/server/request-guards";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -22,16 +23,22 @@ export const dynamic = "force-dynamic";
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
+  const limited = rateLimit(request, "waitlist", 5, 60 * 60_000);
+  if (limited) return limited;
+
   // 1) Parse the JSON body defensively (never assume it is well-formed).
-  let email: unknown;
-  try {
-    ({ email } = await request.json());
-  } catch {
+  const body = await readJsonLimited(request, 1_024);
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
+  const email = (body as { email?: unknown }).email;
 
   // 2) Validate the value *before* touching the database or secrets.
-  if (typeof email !== "string" || !EMAIL_PATTERN.test(email.trim())) {
+  if (
+    typeof email !== "string" ||
+    email.trim().length > 254 ||
+    !EMAIL_PATTERN.test(email.trim())
+  ) {
     return NextResponse.json(
       { error: "Please enter a valid email address." },
       { status: 400 },

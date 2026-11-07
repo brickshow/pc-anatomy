@@ -4,7 +4,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ChatWidget } from "@/components/chat/ChatWidget";
+import { ChatLauncher } from "@/components/chat/ChatLauncher";
 import { JsonLd } from "@/components/seo/JsonLd";
 import {
   GITHUB_URL,
@@ -113,7 +113,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full bg-background text-foreground">
         {children}
-        <ChatWidget />
+        <ChatLauncher />
         {/* Site-wide structured data: identity, organization, and education app info */}
         <JsonLd
           data={[

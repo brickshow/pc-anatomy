@@ -3,6 +3,7 @@
 
 import { NextResponse } from "next/server";
 import { CHAT_MODELS } from "@/lib/chat/models";
+import { rateLimit, readJsonLimited } from "@/lib/server/request-guards";
 
 // These settings tell Next.js to run this route with the Node.js runtime and never cache the result.
 export const runtime = "nodejs";
@@ -11,6 +12,8 @@ export const dynamic = "force-dynamic";
 // The OpenRouter API address we send requests to, and the most recent messages we keep from the chat history.
 const OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 const MAX_HISTORY = 12;
+const MAX_REQUEST_BYTES = 32 * 1024;
+const MAX_MESSAGE_CHARS = 2_000;
 // Hard cap for every AI reply: the server truncates anything longer
 // than this so responses always stay short and readable.
 const MAX_REPLY_CHARS = 500;
@@ -64,23 +67,46 @@ function modelPriority(): string[] {
 
 // This runs when the client sends a POST request to /api/chat containing the chat history.
 export async function POST(request: Request) {
-  let body: { messages?: ChatMessage[] };
-  try {
-    // Read and parse the JSON data that the client sent us.
-    body = await request.json();
-  } catch {
-    // If the request wasn't valid JSON, return an error back to the client.
+  const limited = rateLimit(request, "chat", 6, 60_000);
+  if (limited) return limited;
+
+  const body = await readJsonLimited(request, MAX_REQUEST_BYTES);
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
   // Grab the array of chat messages from the body (or use an empty list if it's missing).
-  const history = Array.isArray(body.messages) ? body.messages : [];
+  const candidate = (body as { messages?: unknown }).messages;
+  if (!Array.isArray(candidate)) {
+    return NextResponse.json({ error: "Invalid message history." }, { status: 400 });
+  }
+  const history: ChatMessage[] = [];
+  // Clients may send the full conversation. Validate only the bounded slice
+  // that can be forwarded upstream, preserving the request's existing contract.
+  for (const message of candidate.slice(-MAX_HISTORY)) {
+    if (
+      !message ||
+      typeof message !== "object" ||
+      !("role" in message) ||
+      !("content" in message) ||
+      (message.role !== "user" && message.role !== "assistant") ||
+      typeof message.content !== "string" ||
+      message.content.trim().length === 0 ||
+      message.content.length > MAX_MESSAGE_CHARS
+    ) {
+      return NextResponse.json({ error: "Invalid message." }, { status: 400 });
+    }
+    history.push({ role: message.role, content: message.content.trim() });
+  }
   // If there are no messages at all, there's nothing to reply to, so return an error.
   if (history.length === 0) {
     return NextResponse.json(
       { error: "No messages provided." },
       { status: 400 }
     );
+  }
+  if (history[history.length - 1]?.role !== "user") {
+    return NextResponse.json({ error: "The latest message must be from the user." }, { status: 400 });
   }
 
   // Read the API key from the environment variables; the AI can't be called without it.
@@ -124,7 +150,7 @@ export async function POST(request: Request) {
           model,
           messages,
           temperature: 0.4,
-          max_tokens: 1024,
+          max_tokens: 512,
         }),
         // Give up on this model after 30 seconds and try the next one.
         signal: AbortSignal.timeout(30_000),

@@ -115,9 +115,9 @@ function Typewriter({
   );
 }
 
-export function ChatWidget() {
+export function ChatWidget({ initiallyOpen = false }: { initiallyOpen?: boolean }) {
   // Whether the chat window is open/closed.
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(initiallyOpen);
   // Current text typed in the input box.
   const [input, setInput] = useState("");
   // True while waiting for the assistant's reply.
@@ -433,6 +433,7 @@ export function ChatWidget() {
                 <input
                   ref={inputRef}
                   value={input}
+                  maxLength={2_000}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && send()}
                   placeholder="Ask about a component…"

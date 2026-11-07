@@ -8,6 +8,7 @@
 
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { useInView } from "react-intersection-observer";
 import * as THREE from "three";
 import { ContactShadows, useGLTF, useProgress } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
@@ -283,6 +284,7 @@ export function MouseViewer({
 }: {
   mode?: "fullscreen" | "embedded";
 }) {
+  const { ref: viewerRef, inView } = useInView({ rootMargin: "200px" });
   // The loaded model (null until ready).
   const [modelInfo, setModelInfo] = useState<ModelInfo | null>(null);
   // Whether the camera auto-rotates.
@@ -316,11 +318,12 @@ export function MouseViewer({
   }, [next, prev, handleReset, setHotspotNav]);
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div ref={viewerRef} className="relative h-full w-full overflow-hidden">
       {/* The WebGL canvas that renders the 3D mouse scene. */}
       <Canvas
         shadows
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
+        frameloop={inView ? "always" : "never"}
         camera={{ fov: 40, near: 0.05, far: 100 }}
         gl={{ antialias: true, alpha: true }}
       >

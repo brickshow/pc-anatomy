@@ -5,6 +5,7 @@
 // the client, after the crawlable article has rendered.
 
 import dynamic from "next/dynamic";
+import { useInView } from "react-intersection-observer";
 
 const ComponentViewer = dynamic(
   () =>
@@ -31,12 +32,26 @@ export function ModelViewerSection({
   label: string;
   heightClass?: string;
 }) {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: "300px 0px",
+  });
+
   return (
-    <section aria-label={label}>
+    <section ref={ref} aria-label={label}>
       <div
         className={`w-full overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_20px_60px_rgba(2,6,16,0.45)] ${heightClass}`}
       >
-        <ComponentViewer component={model} mode="fullscreen" />
+        {inView ? (
+          <ComponentViewer component={model} mode="fullscreen" />
+        ) : (
+          <div
+            className="flex h-full items-center justify-center text-sm text-muted"
+            aria-label="3D model will load when it is near the viewport"
+          >
+            Interactive 3D model loads as you scroll here.
+          </div>
+        )}
       </div>
     </section>
   );

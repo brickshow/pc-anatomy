@@ -5,10 +5,11 @@
 // post-processing, and a small toolbar (reset camera / pause rotation),
 // plus a loading overlay while the model is being fetched.
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Preload, useProgress } from "@react-three/drei";
 import { EffectComposer, Vignette } from "@react-three/postprocessing";
+import { useInView } from "react-intersection-observer";
 import { Scene, type FrameInfo } from "./Scene";
 import { Lights } from "./Lights";
 import { Environment } from "./Environment";
@@ -19,6 +20,7 @@ export interface ComponentViewerProps {
   component: string;
   mode?: "embedded" | "fullscreen";
   className?: string;
+  initialAutoRotate?: boolean;
 }
 
 // Overlay shown while the 3D model is still loading (with a percentage).
@@ -38,22 +40,32 @@ export function ComponentViewer({
   component,
   mode = "embedded",
   className,
+  initialAutoRotate = true,
 }: ComponentViewerProps) {
+  const { ref: viewerRef, inView } = useInView({ rootMargin: "200px" });
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
   // Info about the loaded model (size/center) so the camera can frame it.
   const [frame, setFrame] = useState<FrameInfo | null>(null);
   // Whether the camera should slowly spin by itself.
-  const [autoRotate, setAutoRotate] = useState(true);
+  const [autoRotate, setAutoRotate] = useState(initialAutoRotate);
   // A counter we bump to tell the camera to reset to its starting view.
   const [resetSeq, setResetSeq] = useState(0);
 
+  useEffect(() => {
+    if (inView) setHasBeenVisible(true);
+  }, [inView]);
+
   return (
     <div
+      ref={viewerRef}
       className={`viewer-root viewer-backdrop viewer-root--${mode}${className ? ` ${className}` : ""}`}
     >
       {/* The WebGL canvas that draws the whole 3D scene. */}
+      {hasBeenVisible ? (
       <Canvas
         shadows
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
+        frameloop={inView ? "always" : "never"}
         camera={{ fov: 40, near: 0.05, far: 100 }}
         gl={{ antialias: true, alpha: true }}
       >
@@ -75,6 +87,11 @@ export function ComponentViewer({
           <Preload all />
         </Suspense>
       </Canvas>
+      ) : (
+        <div className="flex h-full items-center justify-center text-sm text-muted">
+          3D model loads when it is near the viewport.
+        </div>
+      )}
       <LoadingOverlay />
       {/* Toolbar overlaying the viewer: reset camera and toggle rotation. */}
       <div className="viewer-toolbar">
