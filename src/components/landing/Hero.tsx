@@ -1,16 +1,11 @@
 "use client";
 
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Buttons } from "@/components/landing/hero/Buttons";
-import { useViewport } from "@/components/landing/hooks/useViewport";
 
 // Hero: the first section visitors see when the page loads.
 // It fades in a big headline, a tagline, and call-to-action buttons.
 export function Hero() {
-  // Tracks the current viewport size (used for responsive behavior)
-  const viewport = useViewport();
-
   return (
     // Full-height intro section, pushed down so it sits below the header
     <section className="relative flex min-h-screen items-center px-6 pb-24 pt-32">
@@ -22,8 +17,8 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="mt-8 text-balance text-[2.5rem] font-extrabold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
         >
-          Learn Computer Hardware{" "}
-          <span className="hero-gradient">Like Never Before.</span>
+          Explore Computer Anatomy{" "}
+          <span className="hero-gradient">in 3D.</span>
         </motion.h1>
 
         {/* Tagline describing what the platform offers */}
@@ -33,10 +28,9 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mt-6 max-w-2xl text-balance text-base leading-relaxed text-neutral-400 sm:text-lg"
         >
-          PC Anatomy is an open-source educational platform that teaches computer
-          hardware through immersive 3D visualization. Explore the CPU, RAM,
-          motherboard, GPU, storage, and power supply — learn what each part
-          does and how to assemble a PC, in plain language.
+          PC Anatomy is an interactive 3D computer explorer. See CPUs, GPUs, RAM,
+          motherboards, storage, and other computer components up close, learn
+          what each PC part does, and follow a desktop PC assembly guide.
         </motion.p>
 
         {/* Call-to-action buttons */}

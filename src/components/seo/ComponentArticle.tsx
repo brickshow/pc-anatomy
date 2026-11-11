@@ -74,7 +74,7 @@ export function ComponentArticle({
     <div className="bg-background">
       <Breadcrumbs
         crumbs={[
-          { name: "Components", href: "/explore" },
+          { name: "Components", href: "/components" },
           { name: component.name },
         ]}
         className="mx-auto w-full max-w-4xl px-6 pt-6"

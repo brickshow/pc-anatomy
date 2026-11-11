@@ -22,7 +22,6 @@ import {
 import { getComponent } from "@/lib/components";
 import { useExplorer } from "@/lib/store";
 import { ModelCredits } from "@/components/viewer/ModelCredits";
-import { cn } from "@/lib/utils";
 
 // Height (px) of the sheet when collapsed.
 const COLLAPSED_HEIGHT = 120;
@@ -52,6 +51,7 @@ export function MobileInfoSheet() {
   // Expanded state + the live height (used while dragging).
   const [expanded, setExpanded] = useState(false);
   const [height, setHeight] = useState(COLLAPSED_HEIGHT);
+  const [isDragging, setIsDragging] = useState(false);
   const dragging = useRef(false);
   const dragStartY = useRef(0);
 
@@ -59,26 +59,26 @@ export function MobileInfoSheet() {
     ? Math.round(window.innerHeight * EXPANDED_FRACTION)
     : 480;
 
-  // Sync the height whenever the expanded state changes (snap to targets).
-  useEffect(() => {
-    setHeight(expanded ? expandedHeight : COLLAPSED_HEIGHT);
-  }, [expanded, expandedHeight]);
-
   // Re-clamp the height on resize so an expanded sheet always fits the viewport.
   useEffect(() => {
     const onResize = () => {
-      setHeight((h) =>
-        expanded
-          ? Math.min(h, Math.round(window.innerHeight * EXPANDED_FRACTION))
-          : COLLAPSED_HEIGHT
-      );
+      setHeight(expanded
+        ? Math.round(window.innerHeight * EXPANDED_FRACTION)
+        : COLLAPSED_HEIGHT);
     };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, [expanded]);
 
+  const sheetHeight = isDragging
+    ? height
+    : expanded
+      ? expandedHeight
+      : COLLAPSED_HEIGHT;
+
   const handlePointerDown = (e: React.PointerEvent) => {
     dragging.current = true;
+    setIsDragging(true);
     dragStartY.current = e.clientY;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
@@ -93,6 +93,7 @@ export function MobileInfoSheet() {
   const handlePointerUp = (e: React.PointerEvent) => {
     if (!dragging.current) return;
     dragging.current = false;
+    setIsDragging(false);
     const delta = dragStartY.current - e.clientY;
     // A small movement counts as a tap -> toggle.
     if (Math.abs(delta) < 8) {
@@ -118,7 +119,7 @@ export function MobileInfoSheet() {
     // Fixed bottom sheet, shown only on tablet/mobile (hidden on lg+).
     <div className="fixed inset-x-0 bottom-0 z-30 lg:hidden">
       <motion.div
-        animate={{ height }}
+        animate={{ height: sheetHeight }}
         transition={{ type: "spring", stiffness: 260, damping: 30 }}
         className="flex w-full flex-col overflow-hidden rounded-t-2xl border border-b-0 border-line bg-surface/95 shadow-[0_-16px_48px_rgba(0,0,0,0.5)] backdrop-blur-xl"
       >

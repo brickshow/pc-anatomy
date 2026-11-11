@@ -74,7 +74,6 @@ function QrCard() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setReady(false);
     const t = window.setTimeout(() => setReady(true), 1500);
     return () => window.clearTimeout(t);
   }, []);

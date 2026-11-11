@@ -5,9 +5,8 @@
 <h1 align="center">PC Anatomy</h1>
 
 <p align="center">
-  <strong>Explore Computer Anatomy — an open-source, interactive 3D atlas of the computer on your desk.</strong><br />
-  Peel apart the CPU, spin the GPU, trace the motherboard — and actually understand
-  how your machine works.
+  <strong>Explore computer anatomy in 3D — an open-source, interactive atlas of the computer on your desk.</strong><br />
+  Inspect 3D computer components, peel apart a CPU, spin the GPU, and trace the motherboard to understand how your machine works.
 </p>
 
 <p align="center">
@@ -26,9 +25,9 @@
 
 ---
 
-> **The Human Anatomy Atlas — for computers.** Most people use a computer every day but have
-> never seen inside one. PC Anatomy fixes that: it is a fully interactive 3D journey
-> through every major component, explained in plain language and rendered in your browser.
+> **Computer anatomy in 3D.** Most people use a computer every day but have never seen inside one.
+> PC Anatomy is an interactive 3D computer model and learning guide: explore PC parts,
+> understand what computer components do, and see how they fit together.
 
 ---
 
@@ -40,6 +39,7 @@
 > live domain.
 
 - Landing page with cinematic 3D hero: `/`
+- Computer components guide with explanations of PC parts and their functions: `/components`
 - Interactive 3D component explorer: `/explore`
 - Step-by-step PC assembly guide: `/assembly`
 - Educational component pages: `/components/cpu`, `/components/ram`, `/components/motherboard`, `/components/gpu`, `/components/storage`, `/components/power-supply`, `/components/cpu-cooler`, `/components/pc-case`, and more
@@ -48,7 +48,7 @@
 
 ## ✨ What is PC Anatomy?
 
-PC Anatomy is an **interactive 3D educational platform** that teaches computer hardware by letting you *touch it*. Instead of static diagrams and dry tables, you get:
+PC Anatomy is an **interactive 3D computer anatomy platform** that teaches computer hardware by letting you *inspect it*. Explore a 3D computer model, learn what computer components do, and follow each PC part from its role in the system to its physical place in a build. Instead of static diagrams and dry tables, you get:
 
 - 🧠 **Life-sized 3D models** of CPUs, GPUs, motherboards, RAM, storage, PSUs and more.
 - 🔬 **Anatomical zoom** — peel a CPU down to its silicon die, or spin a motherboard like it's on a turntable.

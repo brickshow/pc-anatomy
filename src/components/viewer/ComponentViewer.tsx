@@ -5,7 +5,7 @@
 // post-processing, and a small toolbar (reset camera / pause rotation),
 // plus a loading overlay while the model is being fetched.
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useCallback, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Preload, useProgress } from "@react-three/drei";
 import { EffectComposer, Vignette } from "@react-three/postprocessing";
@@ -42,18 +42,21 @@ export function ComponentViewer({
   className,
   initialAutoRotate = true,
 }: ComponentViewerProps) {
-  const { ref: viewerRef, inView } = useInView({ rootMargin: "200px" });
-  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+  const { ref: loadRef, inView: hasBeenVisible } = useInView({
+    rootMargin: "200px",
+    triggerOnce: true,
+  });
+  const { ref: visibilityRef, inView } = useInView({ rootMargin: "200px" });
+  const viewerRef = useCallback((node: HTMLDivElement | null) => {
+    loadRef(node);
+    visibilityRef(node);
+  }, [loadRef, visibilityRef]);
   // Info about the loaded model (size/center) so the camera can frame it.
   const [frame, setFrame] = useState<FrameInfo | null>(null);
   // Whether the camera should slowly spin by itself.
   const [autoRotate, setAutoRotate] = useState(initialAutoRotate);
   // A counter we bump to tell the camera to reset to its starting view.
   const [resetSeq, setResetSeq] = useState(0);
-
-  useEffect(() => {
-    if (inView) setHasBeenVisible(true);
-  }, [inView]);
 
   return (
     <div

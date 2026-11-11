@@ -9,9 +9,9 @@ export const SITE_URL: string = (
 ).replace(/\/+$/, "");
 
 export const SITE_NAME = "PC Anatomy";
-export const SITE_TITLE = "PC Anatomy — Explore Computer Hardware in 3D";
+export const SITE_TITLE = "Computer Anatomy in 3D: Explore PC Parts | PC Anatomy";
 export const SITE_DESCRIPTION =
-  "Explore computer hardware through an interactive 3D PC Anatomy experience. Learn about CPUs, RAM, motherboards, GPUs, storage, power supplies, and PC assembly.";
+  "Explore a 3D computer anatomy model and learn what PC components do. Rotate CPUs, GPUs, RAM, motherboards, and storage, then follow a desktop PC assembly guide.";
 export const SITE_LANGUAGE = "en";
 
 // Public project repository (open source).

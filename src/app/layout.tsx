@@ -45,9 +45,13 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: [
     "computer anatomy",
+    "computer anatomy 3D",
+    "3D computer components",
     "PC anatomy",
     "computer components",
     "computer parts",
+    "computer parts and functions",
+    "interactive 3D computer model",
     "PC components",
     "computer hardware",
     "PC assembly",

@@ -45,23 +45,26 @@ export function AssemblyGuide() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    try {
-      const raw = window.localStorage.getItem(PROGRESS_KEY);
-      if (raw) {
-        const saved = JSON.parse(raw) as SavedProgress;
-        const savedIndex = ASSEMBLY_STEPS.findIndex((step) => step.id === saved.currentStepId);
-        if (savedIndex >= 0) setCurrentIndex(savedIndex);
-        setDoneIds(validStepIds(saved.doneIds));
-        setSkippedIds(validStepIds(saved.skippedIds));
-      }
-    } catch {
+    const timer = window.setTimeout(() => {
       try {
-        window.localStorage.removeItem(PROGRESS_KEY);
+        const raw = window.localStorage.getItem(PROGRESS_KEY);
+        if (raw) {
+          const saved = JSON.parse(raw) as SavedProgress;
+          const savedIndex = ASSEMBLY_STEPS.findIndex((step) => step.id === saved.currentStepId);
+          if (savedIndex >= 0) setCurrentIndex(savedIndex);
+          setDoneIds(validStepIds(saved.doneIds));
+          setSkippedIds(validStepIds(saved.skippedIds));
+        }
       } catch {
-        // The guide remains usable when browser storage is unavailable.
+        try {
+          window.localStorage.removeItem(PROGRESS_KEY);
+        } catch {
+          // The guide remains usable when browser storage is unavailable.
+        }
       }
-    }
-    setReady(true);
+      setReady(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -275,7 +278,7 @@ export function AssemblyGuide() {
         )}
 
         <p className="mx-auto mt-8 max-w-3xl text-center text-xs leading-5 text-muted-2">
-          This general guide does not replace the manuals for your exact parts. If a connector does not fit, a part does not align, or anything seems damaged, stop and check the manufacturer's instructions before continuing.
+          This general guide does not replace the manuals for your exact parts. If a connector does not fit, a part does not align, or anything seems damaged, stop and check the manufacturer&apos;s instructions before continuing.
         </p>
       </div>
     </main>

@@ -99,7 +99,7 @@ export default function StoragePage() {
   return (
     <div className="min-h-screen bg-background">
       <Breadcrumbs
-        crumbs={[{ name: "Components", href: "/explore" }, { name: "Storage" }]}
+        crumbs={[{ name: "Components", href: "/components" }, { name: "Storage" }]}
         className="mx-auto w-full max-w-4xl px-6 pt-6"
       />
 

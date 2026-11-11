@@ -9,8 +9,6 @@ import type * as THREE from "three";
 import { Header } from "@/components/landing/hero/Header";
 import { Hero } from "@/components/landing/Hero";
 import { Features } from "@/components/landing/Features";
-import { HardwarePreview } from "@/components/landing/HardwarePreview";
-import { LearningExperience } from "@/components/landing/LearningExperience";
 import { Roadmap } from "@/components/landing/Roadmap";
 import { Community } from "@/components/landing/Community";
 import { Footer } from "@/components/landing/Footer";
