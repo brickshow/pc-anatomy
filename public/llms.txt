@@ -4,29 +4,8 @@
 
 ## Start here
 
-- [Computer components guide](https://pc-anatomy.brickshow.site/components): An overview of PC parts, their roles, and links to individual component guides.
-- [Interactive 3D computer explorer](https://pc-anatomy.brickshow.site/explore): Inspect computer hardware in an interactive 3D model.
+- [Interactive 3D computer explorer](https://pc-anatomy.brickshow.site/explore): Explore computer parts and inspect components in an interactive model.
 - [Desktop PC assembly guide](https://pc-anatomy.brickshow.site/assembly): General step-by-step instructions for assembling a desktop PC.
-
-## Component guides
-
-- [PC case](https://pc-anatomy.brickshow.site/components/pc-case)
-- [CPU](https://pc-anatomy.brickshow.site/components/cpu)
-- [Motherboard](https://pc-anatomy.brickshow.site/components/motherboard)
-- [RAM](https://pc-anatomy.brickshow.site/components/ram)
-- [GPU](https://pc-anatomy.brickshow.site/components/gpu)
-- [Computer storage overview](https://pc-anatomy.brickshow.site/components/storage)
-- [SATA SSD](https://pc-anatomy.brickshow.site/components/ssd)
-- [M.2 SSD](https://pc-anatomy.brickshow.site/components/m2-ssd)
-- [Hard disk drive](https://pc-anatomy.brickshow.site/components/hdd)
-- [Power supply](https://pc-anatomy.brickshow.site/components/power-supply)
-- [CPU cooler](https://pc-anatomy.brickshow.site/components/cpu-cooler)
-- [Case fans](https://pc-anatomy.brickshow.site/components/case-fans)
-- [Keyboard](https://pc-anatomy.brickshow.site/components/keyboard)
-- [Mouse](https://pc-anatomy.brickshow.site/components/mouse)
-- [Monitor](https://pc-anatomy.brickshow.site/components/monitor)
-- [UPS](https://pc-anatomy.brickshow.site/components/ups)
-- [AVR](https://pc-anatomy.brickshow.site/components/avr)
 
 ## Site information
 

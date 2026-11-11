@@ -41,6 +41,7 @@ export async function generateMetadata({
   return {
     title: `${component.name} — ${component.tagline}`,
     description,
+    robots: { index: false, follow: true },
     alternates: { canonical: absoluteUrl(path) },
     openGraph: {
       title: `${component.name} — ${component.tagline}`,

@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils";
 
 // Nav links used in both the desktop bar and the mobile menu
 const NAV_LINKS = [
-  { label: "PC Components", href: "/components" },
   { label: "Features", href: "#features" },
   { label: "Roadmap", href: "#roadmap" },
   { label: "Community", href: "#community" },

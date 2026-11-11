@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   title: "Computer Storage — SSD, HDD, NVMe, SATA Explained",
   description:
     "What is computer storage? Learn how SSDs, HDDs, NVMe, and SATA drives work, the difference between storage and RAM, and how storage fits into a PC build.",
+  robots: { index: false, follow: true },
   alternates: { canonical: absoluteUrl(CANONICAL) },
   openGraph: {
     title: "Computer Storage — SSD, HDD, NVMe, SATA Explained",
@@ -99,7 +100,7 @@ export default function StoragePage() {
   return (
     <div className="min-h-screen bg-background">
       <Breadcrumbs
-        crumbs={[{ name: "Components", href: "/components" }, { name: "Storage" }]}
+        crumbs={[{ name: "Components", href: "/explore" }, { name: "Storage" }]}
         className="mx-auto w-full max-w-4xl px-6 pt-6"
       />
 
