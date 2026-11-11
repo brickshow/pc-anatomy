@@ -10,6 +10,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:seo": "node --test scripts/seo-smoke.test.mjs",
     "dev:vinext": "vite dev --port 3001",
     "build:vinext": "vite build",
     "start:vinext": "vite preview",

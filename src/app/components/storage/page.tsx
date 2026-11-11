@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SourceLinks } from "@/components/seo/SourceLinks";
+import { SEO_SOURCES } from "@/data/seoSources";
 import { ModelViewerSection } from "@/components/viewer/ModelViewerSection";
 import {
   SITE_NAME,
@@ -40,16 +42,16 @@ const FAQS = [
 ];
 
 export const metadata: Metadata = {
-  title: "Computer Storage — SSD, HDD, NVMe, SATA Explained",
+  title: "Computer Storage: SSD, HDD & NVMe Guide",
   description:
     "What is computer storage? Learn how SSDs, HDDs, NVMe, and SATA drives work, the difference between storage and RAM, and how storage fits into a PC build.",
-  robots: { index: false, follow: true },
   alternates: { canonical: absoluteUrl(CANONICAL) },
   openGraph: {
-    title: "Computer Storage — SSD, HDD, NVMe, SATA Explained",
+    title: "Computer Storage: SSD, HDD & NVMe Guide",
     description:
       "Learn how SSDs, HDDs, NVMe, and SATA storage work and how they fit into a PC build.",
     url: absoluteUrl(CANONICAL),
+    siteName: SITE_NAME,
     type: "website",
     images: [
       {
@@ -62,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Computer Storage — SSD, HDD, NVMe, SATA Explained",
+    title: "Computer Storage: SSD, HDD & NVMe Guide",
     description:
       "Learn how SSDs, HDDs, NVMe, and SATA storage work and how they fit into a PC build.",
     images: [absoluteUrl("/og-image.png")],
@@ -74,7 +76,7 @@ export default function StoragePage() {
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
+    "@type": "Article",
     headline: H1,
     description:
       "Computer storage explained: SSDs, HDDs, NVMe, SATA, capacity, speed, and the difference between storage and RAM.",
@@ -100,7 +102,10 @@ export default function StoragePage() {
   return (
     <div className="min-h-screen bg-background">
       <Breadcrumbs
-        crumbs={[{ name: "Components", href: "/explore" }, { name: "Storage" }]}
+        crumbs={[
+          { name: "Components", href: "/explore" },
+          { name: "Storage", href: CANONICAL },
+        ]}
         className="mx-auto w-full max-w-4xl px-6 pt-6"
       />
 
@@ -113,6 +118,9 @@ export default function StoragePage() {
           operating system, programs, and files live when the power is off.
           Explore how SSDs, HDDs, NVMe, and SATA drives work and how they fit
           into a PC build, with interactive 3D models of each drive type.
+        </p>
+        <p className="mt-3 text-xs text-muted-2">
+          By PC Anatomy contributors · Published {SITE_PUBLISHED_DATE} · Updated {SITE_REVISED_DATE}
         </p>
 
         <section className={SECTION}>
@@ -179,7 +187,7 @@ export default function StoragePage() {
             SATA is the older serial interface that tops out at about 550 MB/s
             and serves both 2.5-inch SSDs and hard drives. NVMe (Non-Volatile
             Memory Express) is a protocol that lets flash storage talk directly
-            to the CPU over PCIe lanes,             bypassing SATA&apos;s bottleneck entirely —
+            to the CPU over PCIe lanes, bypassing SATA&apos;s bottleneck entirely —
             the reason M.2 NVMe drives can read beyond 7 GB/s.
           </p>
         </section>
@@ -256,6 +264,8 @@ export default function StoragePage() {
             ))}
           </div>
         </section>
+
+        <SourceLinks sources={SEO_SOURCES.storage} />
 
         <section className={SECTION}>
           <h2 className={H2}>Explore Storage Hardware in 3D</h2>

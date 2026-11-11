@@ -9,7 +9,12 @@ import { COMPONENTS, getComponent } from "@/lib/components";
 import { SEO_CONTENT } from "@/data/seo";
 import { ComponentArticle } from "@/components/seo/ComponentArticle";
 import { DetailView } from "@/components/detail/DetailView";
-import { absoluteUrl } from "@/lib/site";
+import {
+  SITE_NAME,
+  SITE_PUBLISHED_DATE,
+  SITE_REVISED_DATE,
+  absoluteUrl,
+} from "@/lib/site";
 
 // Only the slugs from generateStaticParams exist. Anything else must be a
 // real 404 — this prevents on-demand prerendering of unknown URLs (soft 404s)
@@ -34,20 +39,22 @@ export async function generateMetadata({
     };
   }
 
-  const seo = SEO_CONTENT[component.id];
-  const description = (seo?.whatIs ?? component.short).replace(/\s+/g, " ").trim();
+  const description = `${component.short} Explore its parts and connections in an interactive 3D PC model.`;
   const path = `/components/${component.id}`;
 
   return {
     title: `${component.name} — ${component.tagline}`,
     description,
-    robots: { index: false, follow: true },
     alternates: { canonical: absoluteUrl(path) },
     openGraph: {
       title: `${component.name} — ${component.tagline}`,
       description,
       url: absoluteUrl(path),
-      type: "website",
+      siteName: SITE_NAME,
+      type: "article",
+      publishedTime: SITE_PUBLISHED_DATE,
+      modifiedTime: SITE_REVISED_DATE,
+      authors: [SITE_NAME],
       images: [{ url: absoluteUrl("/og-image.png"), width: 1200, height: 630, alt: "PC Anatomy — Explore Computer Hardware in 3D" }],
     },
     twitter: {
@@ -69,9 +76,9 @@ export default async function ComponentPage({
   if (!component) notFound();
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
+    <main className="flex min-h-screen flex-col bg-background">
       <ComponentArticle component={component} seo={SEO_CONTENT[component.id]} />
       <DetailView component={component} />
-    </div>
+    </main>
   );
 }

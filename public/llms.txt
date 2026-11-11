@@ -4,8 +4,28 @@
 
 ## Start here
 
-- [Interactive 3D computer explorer](https://pc-anatomy.brickshow.site/explore): Explore computer parts and inspect components in an interactive model.
+- [Interactive 3D computer explorer](https://pc-anatomy.brickshow.site/explore): Explore the computer system, inspect components in 3D, and open the related hardware learning guides.
 - [Desktop PC assembly guide](https://pc-anatomy.brickshow.site/assembly): General step-by-step instructions for assembling a desktop PC.
+
+## Component learning guides
+
+- [PC case](https://pc-anatomy.brickshow.site/components/pc-case): How the chassis houses components, supports airflow, and affects compatibility.
+- [CPU](https://pc-anatomy.brickshow.site/components/cpu): Processor functions, cores, clock speed, cache, and socket compatibility.
+- [Motherboard](https://pc-anatomy.brickshow.site/components/motherboard): Board functions, sockets, chipset, memory, PCIe, storage, and form factors.
+- [RAM](https://pc-anatomy.brickshow.site/components/ram): Working memory, capacity, speed, generations, and performance.
+- [GPU](https://pc-anatomy.brickshow.site/components/gpu): Graphics processing, VRAM, integrated graphics, and PC compatibility.
+- [Storage overview](https://pc-anatomy.brickshow.site/components/storage): SSDs, HDDs, SATA, NVMe, capacity, and storage versus RAM.
+- [SATA SSD](https://pc-anatomy.brickshow.site/components/ssd): Flash storage, SATA interfaces, and drive use in a PC.
+- [M.2 SSD](https://pc-anatomy.brickshow.site/components/m2-ssd): M.2 form factors, NVMe, PCIe lanes, and compatibility.
+- [HDD](https://pc-anatomy.brickshow.site/components/hdd): Magnetic storage, platters, capacity, and common use cases.
+- [Power supply](https://pc-anatomy.brickshow.site/components/power-supply): AC-to-DC conversion, wattage, connectors, and protection.
+- [CPU cooler](https://pc-anatomy.brickshow.site/components/cpu-cooler): Air and liquid cooling, heat transfer, and CPU temperatures.
+- [Case fans](https://pc-anatomy.brickshow.site/components/case-fans): Case airflow, intake and exhaust, pressure, and fan sizing.
+- [Keyboard](https://pc-anatomy.brickshow.site/components/keyboard): Keyboard switches, input signals, layouts, and connection types.
+- [Mouse](https://pc-anatomy.brickshow.site/components/mouse): Mouse sensors, movement tracking, buttons, and connectivity.
+- [Monitor](https://pc-anatomy.brickshow.site/components/monitor): Display panels, refresh rate, resolution, and video connections.
+- [UPS](https://pc-anatomy.brickshow.site/components/ups): Battery backup, runtime, and protection during power interruptions.
+- [AVR](https://pc-anatomy.brickshow.site/components/avr): Automatic voltage regulation and protection from voltage variation.
 
 ## Site information
 

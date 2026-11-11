@@ -4,13 +4,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
-import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Page Not Found",
   description: "The page you are looking for could not be found.",
   robots: { index: false, follow: false },
-  alternates: { canonical: absoluteUrl("/") },
 };
 
 const LINKS = [

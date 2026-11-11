@@ -141,7 +141,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             },
             {
               "@context": "https://schema.org",
-              "@type": "EducationalApplication",
+              "@type": "SoftwareApplication",
               name: SITE_NAME,
               url: absoluteUrl("/"),
               description: SITE_DESCRIPTION,

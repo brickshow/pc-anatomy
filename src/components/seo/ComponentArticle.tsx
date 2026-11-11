@@ -10,6 +10,8 @@ import { getComponent } from "@/lib/components";
 import type { ComponentSeo } from "@/data/seo";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SourceLinks } from "@/components/seo/SourceLinks";
+import { SEO_SOURCES } from "@/data/seoSources";
 import {
   SITE_NAME,
   SITE_PUBLISHED_DATE,
@@ -54,7 +56,7 @@ export function ComponentArticle({
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "TechArticle",
+    "@type": "Article",
     headline: h1,
     description: component.short,
     author: { "@type": "Organization", name: SITE_NAME, url: absoluteUrl("/") },
@@ -75,7 +77,7 @@ export function ComponentArticle({
       <Breadcrumbs
         crumbs={[
           { name: "Components", href: "/explore" },
-          { name: component.name },
+          { name: component.name, href: `/components/${component.id}` },
         ]}
         className="mx-auto w-full max-w-4xl px-6 pt-6"
       />
@@ -87,6 +89,9 @@ export function ComponentArticle({
         <p className="mt-4 max-w-3xl text-pretty text-base leading-relaxed text-muted sm:text-lg">
           {component.short} Explore it in the interactive 3D viewer below, with
           the key facts about how it works and how it fits into a PC build.
+        </p>
+        <p className="mt-3 text-xs text-muted-2">
+          By PC Anatomy contributors · Published {SITE_PUBLISHED_DATE} · Updated {SITE_REVISED_DATE}
         </p>
 
         {seo ? (
@@ -124,7 +129,12 @@ export function ComponentArticle({
 
             {component.specs.length > 0 && (
               <section className={SECTION}>
-                <h2 className={H2}>Key Specifications</h2>
+                <h2 className={H2}>Example Specifications</h2>
+                <p className={P}>
+                  These values illustrate a common desktop setup. Specifications
+                  vary by model; check the manufacturer’s documentation before
+                  choosing or installing hardware.
+                </p>
                 <div className="mt-4 overflow-x-auto rounded-xl border border-line bg-surface">
                   <table className="w-full text-left text-sm">
                     <caption className="sr-only">
@@ -204,6 +214,8 @@ export function ComponentArticle({
             </ul>
           </section>
         )}
+
+        <SourceLinks sources={SEO_SOURCES[component.id] ?? []} />
 
         {/* Visible FAQ — content matches the FAQPage JSON-LD exactly */}
         {seo && seo.faqs.length > 0 && (

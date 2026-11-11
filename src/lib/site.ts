@@ -11,7 +11,7 @@ export const SITE_URL: string = (
 export const SITE_NAME = "PC Anatomy";
 export const SITE_TITLE = "Computer Anatomy in 3D: Explore PC Parts | PC Anatomy";
 export const SITE_DESCRIPTION =
-  "Explore a 3D computer anatomy model and learn what PC components do. Rotate CPUs, GPUs, RAM, motherboards, and storage, then follow a desktop PC assembly guide.";
+  "Explore a 3D computer anatomy model, learn what PC components do, and follow a desktop PC assembly guide.";
 export const SITE_LANGUAGE = "en";
 
 // Public project repository (open source).
@@ -20,8 +20,8 @@ export const GITHUB_URL = "https://github.com/brickshow/pc-anatomy";
 // Real dates derived from the repository history. The component library was
 // first published on 2026-08-06; the site was last revised when the SEO
 // system shipped. Used only where Schema.org requires a publication date.
-export const SITE_PUBLISHED_DATE = "2026-08-06";
-export const SITE_REVISED_DATE = "2026-08-11";
+export const SITE_PUBLISHED_DATE = "2026-08-11";
+export const SITE_REVISED_DATE = "2026-11-12";
 
 // Absolute URL helper for canonical/OG/JSON-LD references.
 export function absoluteUrl(path = "/"): string {

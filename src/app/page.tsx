@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 // This is the main component Next.js renders for the "/" URL. It just displays the LandingPage.
-// (Global structured data — WebSite, Organization, EducationalApplication — lives in layout.tsx.)
+// (Global structured data — WebSite, Organization, SoftwareApplication — lives in layout.tsx.)
 export default function Home() {
   return <LandingPage />;
 }

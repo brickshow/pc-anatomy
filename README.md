@@ -39,10 +39,10 @@
 > live domain.
 
 - Landing page with cinematic 3D hero: `/`
-- Computer components guide with explanations of PC parts and their functions: `/components`
-- Interactive 3D component explorer: `/explore`
+- Interactive 3D computer and component explorer: `/explore`
 - Step-by-step PC assembly guide: `/assembly`
-- Educational component pages: `/components/cpu`, `/components/ram`, `/components/motherboard`, `/components/gpu`, `/components/storage`, `/components/power-supply`, `/components/cpu-cooler`, `/components/pc-case`, and more
+
+The public search pages are `/`, `/explore`, `/assembly`, and the component learning guides linked from `/explore`.
 
 ---
 
@@ -53,7 +53,7 @@ PC Anatomy is an **interactive 3D computer anatomy platform** that teaches compu
 - 🧠 **Life-sized 3D models** of CPUs, GPUs, motherboards, RAM, storage, PSUs and more.
 - 🔬 **Anatomical zoom** — peel a CPU down to its silicon die, or spin a motherboard like it's on a turntable.
 - 🖱️ **Click-to-learn hotspots** on every component, with clear explanations of *what it does* and *why it matters*.
-- 📚 **Crawlable educational articles** on every component page — written answers, key specs, FAQs, and related-component links that work even without WebGL.
+- 📚 **Component explanations** alongside the 3D models, with key details available as visitors explore the hardware.
 - 💬 **A built-in AI assistant** that answers your hardware questions in natural language.
 
 All of it is **100% open source** and free to use, fork, and learn from.
@@ -67,8 +67,8 @@ All of it is **100% open source** and free to use, fork, and learn from.
 | 🖥️ **Interactive 3D Explorer** | A full-screen WebGL viewer with orbit, zoom, and hotspot navigation — built on React Three Fiber. |
 | 🧩 **16+ Components** | PC Case, CPU + water block, Motherboard, RAM, GPU, M.2 SSD, SATA SSD, HDD, PSU, CPU Cooler, Case Fans, Keyboard, Mouse, Monitor, UPS, and AVR. |
 | 🔬 **CPU Layer Explosion** | Dissect the CPU layer by layer — heat spreader, TIM, die, substrate, and IHS — with lift animation. |
-| 🔍 **SEO + AI Answer Engines** | Every component page is a full educational article with FAQ structured data, breadcrumbs, canonicals, sitemap, and robots — readable by Google, Bing, ChatGPT, Perplexity, and Gemini. |
-| 🛠️ **PC Assembly Guide** | A step-by-step `/assembly` guide connecting every step to the relevant component page and 3D model. |
+| 🔍 **SEO + AI Discovery** | Search metadata and structured data describe the landing page, interactive explorer, assembly guide, and component learning articles. |
+| 🛠️ **PC Assembly Guide** | A step-by-step `/assembly` guide connecting build steps to the relevant component and 3D model. |
 | 💬 **AI Assistant** | A context-aware chat guide (OpenRouter) that answers hardware questions with Markdown tables, specs and friendly explanations. |
 | 🎬 **Landing Page** | A cinematic hero with a shader-based starfield, animated gradient headline, and glassmorphism — built with Framer Motion. |
 | ⚡ **Modern Stack** | Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS 4 + Three.js on WebGL. |
@@ -104,8 +104,8 @@ src/
 │   │   └── chat/          # OpenRouter-backed AI assistant route
 │   ├── assembly/          # Step-by-step PC assembly guide
 │   ├── components/
-│   │   ├── [slug]/        # Per-component SEO pages (/components/[slug])
-│   │   └── storage/       # Computer storage topic page
+│   │   ├── [slug]/        # Server-rendered component learning articles and 3D views
+│   │   └── storage/       # Server-rendered computer storage guide and 3D views
 │   ├── explore/           # Full-screen 3D explorer page
 │   ├── error.tsx          # Friendly error boundary (no stack traces)
 │   ├── globals.css        # Tailwind + custom theme & utilities
@@ -170,7 +170,7 @@ npm run start      # serve the production build
 
 | Variable | Required | Description |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | No* | Production URL for canonical URLs, OG tags, `sitemap.xml`, `robots.txt`. Defaults to `https://pc-anatomy.example.com` in development. *Required for production SEO.* |
+| `NEXT_PUBLIC_SITE_URL` | No | Production URL for canonical URLs, OG tags, `sitemap.xml`, and `robots.txt`. Defaults to `https://pc-anatomy.brickshow.site`; override it for another deployment hostname. |
 | `OPENROUTER_API_KEY` | No | Enables the AI assistant. Without it, the chat explains it is not configured. |
 | `OPENROUTER_MODEL` | No | Overrides the default chat model (e.g. `google/gemma-4-26b-a4b-it:free`). |
 | `NEXT_PUBLIC_DONATE_QR_URL` | No | Path to a donation QR code image shown in the support panel. |
@@ -183,12 +183,12 @@ npm run start      # serve the production build
 
 PC Anatomy is built to be found — by humans *and* by AI answer engines:
 
-- **Server-rendered educational articles** on every component page, written in a "direct answer first" style that AI assistants extract from.
-- **Schema.org JSON-LD**: `WebSite`, `Organization`, `EducationalApplication`, `TechArticle`, `FAQPage`, `BreadcrumbList`.
+- **Server-rendered component guides** with direct answers, specs, FAQ content, breadcrumbs, and related hardware links.
+- **Schema.org JSON-LD**: `WebSite`, `Organization`, `SoftwareApplication`, `Article`, `FAQPage`, and `BreadcrumbList`.
 - **Canonical URLs, Open Graph, Twitter cards** on every page, with a global 1200×630 OG image.
-- **`sitemap.xml`** covering every route and **`robots.txt`** with the sitemap reference.
+- **`sitemap.xml`** listing canonical, indexable pages and **`robots.txt`** with the sitemap reference.
 - **No index/no follow hygiene** on error pages and the `/api` surface.
-- **Semantic internal linking** between component pages (related parts), the assembly guide, and the storage topic hub.
+- **Semantic links** connect component guides, the interactive explorer, and the assembly guide.
 
 ---
 
