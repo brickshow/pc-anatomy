@@ -11,7 +11,7 @@ export const SITE_URL: string = (
 export const SITE_NAME = "PC Anatomy";
 export const SITE_TITLE = "Computer Anatomy in 3D: Explore PC Parts | PC Anatomy";
 export const SITE_DESCRIPTION =
-  "Explore a 3D computer anatomy model, learn what PC components do, and follow a desktop PC assembly guide.";
+  "Explore a 3D computer anatomy model and learn what PC components do and how they work together.";
 export const SITE_LANGUAGE = "en";
 
 // Public project repository (open source).

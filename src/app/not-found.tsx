@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/explore", label: "Explore Computer Components in 3D" },
-  { href: "/assembly", label: "How to Assemble a PC" },
 ];
 
 export default function NotFound() {

@@ -40,9 +40,8 @@
 
 - Landing page with cinematic 3D hero: `/`
 - Interactive 3D computer and component explorer: `/explore`
-- Step-by-step PC assembly guide: `/assembly`
 
-The public search pages are `/`, `/explore`, `/assembly`, and the component learning guides linked from `/explore`.
+The public search pages are `/`, `/explore`, and the component learning guides linked from `/explore`.
 
 ---
 
@@ -68,7 +67,6 @@ All of it is **100% open source** and free to use, fork, and learn from.
 | 🧩 **16+ Components** | PC Case, CPU + water block, Motherboard, RAM, GPU, M.2 SSD, SATA SSD, HDD, PSU, CPU Cooler, Case Fans, Keyboard, Mouse, Monitor, UPS, and AVR. |
 | 🔬 **CPU Layer Explosion** | Dissect the CPU layer by layer — heat spreader, TIM, die, substrate, and IHS — with lift animation. |
 | 🔍 **SEO + AI Discovery** | Search metadata and structured data describe the landing page, interactive explorer, assembly guide, and component learning articles. |
-| 🛠️ **PC Assembly Guide** | A step-by-step `/assembly` guide connecting build steps to the relevant component and 3D model. |
 | 💬 **AI Assistant** | A context-aware chat guide (OpenRouter) that answers hardware questions with Markdown tables, specs and friendly explanations. |
 | 🎬 **Landing Page** | A cinematic hero with a shader-based starfield, animated gradient headline, and glassmorphism — built with Framer Motion. |
 | ⚡ **Modern Stack** | Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS 4 + Three.js on WebGL. |
@@ -188,7 +186,7 @@ PC Anatomy is built to be found — by humans *and* by AI answer engines:
 - **Canonical URLs, Open Graph, Twitter cards** on every page, with a global 1200×630 OG image.
 - **`sitemap.xml`** listing canonical, indexable pages and **`robots.txt`** with the sitemap reference.
 - **No index/no follow hygiene** on error pages and the `/api` surface.
-- **Semantic links** connect component guides, the interactive explorer, and the assembly guide.
+- **Semantic links** connect component guides and the interactive explorer.
 
 ---
 
@@ -220,4 +218,4 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ## 🔖 Topics
 
-`computer-anatomy` · `computer-hardware` · `pc-assembly` · `threejs` · `react` · `nextjs` · `webgl` · `education` · `3d` · `seo`
+`computer-anatomy` · `computer-hardware` · `threejs` · `react` · `nextjs` · `webgl` · `education` · `3d` · `seo`

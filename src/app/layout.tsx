@@ -54,8 +54,6 @@ export const metadata: Metadata = {
     "interactive 3D computer model",
     "PC components",
     "computer hardware",
-    "PC assembly",
-    "PC building",
     "learn computer hardware",
   ],
   authors: [{ name: "PC Anatomy Contributors" }],
@@ -147,7 +145,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               description: SITE_DESCRIPTION,
               applicationCategory: "EducationalApplication",
               educationalUse:
-                "Learn about computer hardware, computer components, and PC assembly",
+                "Learn about computer hardware and computer components",
               operatingSystem: "Web",
             },
           ]}

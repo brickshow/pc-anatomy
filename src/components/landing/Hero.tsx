@@ -30,7 +30,7 @@ export function Hero() {
         >
           PC Anatomy is an interactive 3D computer explorer. See CPUs, GPUs, RAM,
           motherboards, storage, and other computer components up close, learn
-          what each PC part does, and follow a desktop PC assembly guide.
+          what each PC part does, and how the hardware works together.
         </motion.p>
 
         {/* Call-to-action buttons */}

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   description:
     "Follow a practical desktop PC build from workspace preparation to first boot, with interactive 3D previews and compatibility reminders.",
   alternates: { canonical: absoluteUrl("/assembly") },
+  robots: { index: false, follow: false },
   openGraph: {
     title: "How to Build a Desktop PC: Step-by-Step Guide",
     description: "A practical desktop PC assembly guide with interactive 3D part previews.",

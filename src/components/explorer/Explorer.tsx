@@ -26,7 +26,7 @@ export function Explorer() {
     // row layout (sidebar | viewer | detail panel) on lg+ screens. The loader
     // overlays everything on open.
     <div className="flex h-dvh w-full flex-col overflow-hidden bg-background text-foreground">
-      {/* Top navigation bar with the brand and the PC Assembly button. */}
+      {/* Top navigation bar with the brand and page title. */}
       <ExploreHeader onOpenMenu={() => setDrawerOpen(true)} />
 
       <div className="flex min-h-0 min-w-0 flex-1 lg:flex-row">

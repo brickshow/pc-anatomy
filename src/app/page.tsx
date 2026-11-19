@@ -22,8 +22,6 @@ export const metadata: Metadata = {
     "PC components",
     "3D PC parts",
     "computer hardware",
-    "PC assembly",
-    "PC building",
     "learn computer hardware",
   ],
   openGraph: {

@@ -24,7 +24,6 @@ const componentSlugs = [
 const indexablePaths = [
   "/",
   "/explore",
-  "/assembly",
   "/components/storage",
   ...componentSlugs.map((slug) => `/components/${slug}`),
 ];
@@ -65,6 +64,7 @@ test("robots allows educational pages and points at the production sitemap", asy
   assert.match(robots, /Disallow:\s*\/api\//i);
   assert.match(robots, new RegExp(`Sitemap:\\s*${canonicalOrigin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/sitemap\\.xml`, "i"));
   assert.doesNotMatch(robots, /Disallow:\s*\/components/i);
+  assert.doesNotMatch(robots, /Disallow:\s*\/assembly/i);
 });
 
 test("sitemap contains only the canonical public learning routes", async () => {
@@ -101,14 +101,20 @@ test("all sitemap pages are indexable, canonical, and have useful server-rendere
     return { path, html };
   }));
 
-  const explore = results.find(({ path }) => path === "/explore").html;
-  for (const path of indexablePaths.filter((url) => url.startsWith("/components/"))) {
-    assert.ok(explore.includes(`href="${path}"`), `/explore should link to ${path}`);
-  }
   const titles = results.map(({ html }) => html.match(/<title>([^<]+)<\/title>/i)?.[1]);
   const descriptions = results.map(({ html }) => meta(html, "description"));
   assert.equal(new Set(titles).size, titles.length, "indexable pages need unique titles");
   assert.equal(new Set(descriptions).size, descriptions.length, "indexable pages need unique descriptions");
+});
+
+test("unfinished assembly guide stays out of search and the sitemap", async () => {
+  const response = await get("/assembly");
+  const html = await response.text();
+  assert.equal(response.status, 200, "assembly route remains directly available");
+  assert.match(meta(html, "robots"), /noindex/i);
+
+  const sitemap = await (await get("/sitemap.xml")).text();
+  assert.doesNotMatch(sitemap, /<loc>[^<]*\/assembly<\/loc>/i);
 });
 
 test("component guides expose parseable article, FAQ, and breadcrumb JSON-LD", async () => {

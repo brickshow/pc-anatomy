@@ -5,8 +5,6 @@
 ## Start here
 
 - [Interactive 3D computer explorer](https://pc-anatomy.brickshow.site/explore): Explore the computer system, inspect components in 3D, and open the related hardware learning guides.
-- [Desktop PC assembly guide](https://pc-anatomy.brickshow.site/assembly): General step-by-step instructions for assembling a desktop PC.
-
 ## Component learning guides
 
 - [PC case](https://pc-anatomy.brickshow.site/components/pc-case): How the chassis houses components, supports airflow, and affects compatibility.
